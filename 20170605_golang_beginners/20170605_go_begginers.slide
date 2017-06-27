@@ -1,0 +1,336 @@
+Golang、ちゃんと始めて1ヶ月経ちました
+
+Go言語LT大会！ 「最近、Go言語始めました」の会
+05 Jun 2017
+Tags: go golang beginner
+
+@nntsugu
+
+* About me
+- んんつぐ (@nntsugu)
+- OPS Engineer
+
+
+
+* Golang歴(~2016)
+
+
+- A Tour of go(未完)
+- 2016/10/28 Go言語初心者向けハンズオン
+
+
+* Golang歴(2017~)
+
+- 2017/04/22 Go合宿2017
+
+.image https://connpass-tokyo.s3.amazonaws.com/thumbs/a5/35/a5356bf154130f483221a0d4e01fadf9.png
+
+
+* Golang歴(2017~)
+
+- 2017/04/22 Go合宿2017
+
+.image img/gocamp.png 500 _
+
+
+* Golang歴(2017~)
+
+- 2017/04/22 Go合宿2017
+
+.image img/konohen.png 500 _
+
+
+
+* 合宿から1ヶ月ちょいで作ったもの
+
+- DatadogのMonitoring設定自動化ツール
+
+- [[https://github.com/nntsugu/ddgo][https://github.com/nntsugu/ddgo]]
+.image img/repo.png 450 _
+
+* なぜ作ったのか
+
+.image img/mm.png 450 _
+
+
+* なぜ作ったのか
+
+.image img/mm_bold.png 450 _
+
+
+
+* なぜ作ったのか
+
+監視対象メトリクス/イベント x8種
+
+- Dockerコンテナが再起動(リデプロイ)された
+- CPU UsageがXX％オーバー
+- Memory UsageがXX％オーバー
+- etc
+
+
+* なぜ作ったのか
+
+環境 x3種用に用意する
+
+- DEV
+- STG
+- PROD
+
+
+* なぜ作ったのか
+
+8種 x 3環境 = 24設定(+α)
+
+
+
+* なぜ作ったのか
+
+8種 x 3環境 = 24設定(+α)
+
+- 手で作ると
+- 1サービスあたり3hかかってしまう
+
+
+* なぜ作ったのか
+
+部署の全サービスをkubernetesに移設するプロジェクトです
+
+
+* なぜ作ったのか
+
+部署の全サービスをkubernetesに移設するプロジェクトです
+
+- 対象サービス数は20+です
+
+
+* なぜ作ったのか
+
+8種 x 3環境 = 24設定(+α) x 20+サービス x 3h = 1440h
+
+
+* なぜ作ったのか
+
+8種 x 3環境 = 24設定(+α) x 20+サービス x 3h = 1440h
+
+- 手で作ると
+- だいたい60日
+
+
+* なぜ作ったのか
+
+8種 x 3環境 = 24設定(+α) x 20+サービス x 3h = 1440h
+
+- 手で作ると
+- だいたい60日
+- 営業日ベースで言うと 192日 (1日7.5h換算)
+
+
+* なぜ作ったのか
+
+.image img/tsurai.png 450 _
+
+
+* デモ
+
+
+
+* 結果
+
+- 3h -> 1h / Service (64営業日まで短縮！)
+
+- 作成したMonitoring設定のテストは手動のまま
+
+
+
+
+* 書いたコードの話
+
+- [[https://github.com/nntsugu/ddgo/ddgo.go][https://github.com/nntsugu/ddgo/ddgo.go]]
+
+- 全体で: 269行
+
+.code code/ddgo.go /START OMIT/,/END OMIT/
+
+
+
+* 書いたコードの話
+
+- [[https://github.com/nntsugu/ddgo/ddgo.go][https://github.com/nntsugu/ddgo/ddgo.go]]
+
+- 全体で: 269行
+
+.code code/err.go /START OMIT/,/END OMIT/
+
+- を除くと: 198行
+
+
+* 書いたコードの話
+
+- 依存したライブラリ
+
+.code code/import.go /START OMIT/,/END OMIT/
+
+
+* 書いたコードの話
+
+- 依存したライブラリ
+
+- 使い方を学ぶ必要があったのは3種類くらい
+
+.code code/import_req.go /START OMIT/,/END OMIT/
+
+
+
+* ライブラリの話
+
+flag
+
+- [[http://ryochack.hatenablog.com/entry/2013/04/17/232753][Go言語のflagパッケージを使う(uragami note)]] http://ryochack.hatenablog.com/entry/2013/04/17/232753
+
+* ライブラリの話
+
+net/http,	net/url
+
+- [[http://qiita.com/jpshadowapps/items/463b2623209479adcd88][Go net/httpパッケージの概要とHTTPクライアント実装例(Qiita)]] http://ryochack.hatenablog.com/entry/2013/04/17/232753
+
+
+* ライブラリの話
+
+go-dproxy (jsonを簡単に扱うためのライブラリ)
+
+- [[https://www.kaoriya.net/blog/2016/06/25/][golang は ゆるふわに JSON を扱えまぁす!(KaoriYa)]] https://www.kaoriya.net/blog/2016/06/25/
+
+.code code/dproxy.go /START OMIT/,/END OMIT/
+
+
+
+* ここまでにかけた時間
+
+4/22-23 Go開発合宿2017
+
+- 15時~朝4時まで(開発11h程度)
+- 9時-14時(開発3h弱)
+
+5/3
+
+- プチ開発合宿 x2h程度
+
+* ここまでにかけた時間
+
+5/14~25
+
+- contributionがあった日 x11日(15h程度)
+
+.image img/pulse_range.png 200 _
+
+
+
+* ここまでにかけた時間
+
+5/14~25
+
+- contributionがあった日 x11日(15h程度)
+
+.image img/pulse_range.png 200 _
+
+5/30-31
+
+- ドキュメント作り 1h程度
+
+
+
+* ここまでにかけた時間
+
+合計: 34h
+
+
+
+* ここまでにかけた時間
+
+合計: 34h
+
+延べ日数: (合宿2日込で) 15日
+
+
+* ここまでにかかった時間
+
+合計: 34h
+
+延べ日数: (合宿2日込で) 15日
+
+1日1時間で換算しても、1ヶ月程度
+
+
+* 次やること
+
+- テストを書く
+
+- Datadog APIのDowntimeに対応する
+
+- goaで何か書く (デザインファーストなFWです)
+
+
+* まとめ
+
+- 簡単なツールを書くだけなら学習コスト低い(35hくらいでいけた)
+- 標準パッケージ(特にnet/hoge)がめちゃ強力
+
+
+
+
+
+
+
+
+* おわりに
+
+- Golang、ちゃんと触り始めて1ヶ月経ちました
+
+* おわりに
+
+- Golang、ちゃんと触り始めて1ヶ月経ちました
+
+34hあれば
+
+- Golangの基礎の学習
+- 簡単なツール作り
+
+ならなんとかなる (たぶん)
+
+
+* おわりに
+
+- もちろん、合宿で出来る人たちに教えてもらえた　のは大きいし
+
+
+* おわりに
+
+- もちろん、合宿で出来る人たちに教えてもらえた　のは大きいし
+- 1日1時間でもひとりで頑張るのはしんどいよね。。(作りたいものがない場合はなおさら)
+
+
+
+* おわりに
+
+と、いうわけで、
+月2〜4回、土日いずれかの朝に2hほど、プチ開発合宿をしようと思います。
+
+
+* おわりに
+
+と、いうわけで、
+月2〜4回、土日いずれかの朝に2hほど、ぷち開発合宿をしようと思います。
+
+- Slackでのオンライン参加
+- どこかのコワーキング
+
+
+* おわりに
+
+初心者の方、興味ある方、一緒にゆるーくGolangしませんか？
+
+
+Twitter @nntsugu
+
+までリプライかDMください
